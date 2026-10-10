@@ -12,7 +12,7 @@ const dist = raiz + 'dist/';
 const SITE_URL = (
   process.env.SITE_URL ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
-  'https://arthur-site.vercel.app'
+  'https://arthur-site-one.vercel.app'
 ).replace(/\/$/, '');
 
 const { render } = await import(pathToFileURL(raiz + 'dist-ssr/entry-server.js').href);
