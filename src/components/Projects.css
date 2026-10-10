@@ -1,0 +1,270 @@
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.proj {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.proj:hover {
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--line));
+  box-shadow: 0 30px 60px -36px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+/* Projeto principal ocupa a linha inteira, com print à esquerda */
+.proj.principal {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+}
+
+/* Print dentro de uma janela de navegador */
+.shot {
+  display: flex;
+  flex-direction: column;
+  margin: 14px 14px 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg);
+}
+.proj.principal .shot {
+  margin: 18px;
+}
+.shot-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--bg-3);
+  border-bottom: 1px solid var(--line);
+}
+.shot-url {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.shot-url svg {
+  color: var(--accent);
+  flex: none;
+}
+.shot-view {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+.proj.principal .shot-view {
+  aspect-ratio: auto;
+  flex: 1;
+  min-height: 340px;
+}
+.shot-view img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+  transition: object-position 7s cubic-bezier(0.45, 0, 0.4, 1);
+}
+.proj:hover .shot-view img {
+  object-position: 50% 100%;
+  transition-duration: 9s;
+}
+.shot-hint {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  border: 1px solid var(--line-2);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  transition: opacity 0.3s;
+}
+.proj:hover .shot-hint {
+  opacity: 0;
+}
+
+/* No celular não existe hover: o print rola sozinho quando aparece */
+@media (hover: none) {
+  .shot-hint {
+    display: none;
+  }
+  .proj.in .shot-view img {
+    animation: rolar-print 14s ease-in-out 1.2s infinite alternate;
+  }
+}
+@keyframes rolar-print {
+  0%,
+  8% {
+    object-position: 50% 0%;
+  }
+  92%,
+  100% {
+    object-position: 50% 100%;
+  }
+}
+
+.proj-info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 22px 24px;
+  flex: 1;
+}
+.proj.principal .proj-info {
+  padding: 30px 30px 30px 12px;
+  justify-content: center;
+}
+
+.proj-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-weight: 700;
+}
+.badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.badge.live {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+.badge.proto {
+  color: var(--yellow);
+  border-color: color-mix(in srgb, var(--yellow) 40%, transparent);
+  background: color-mix(in srgb, var(--yellow) 8%, transparent);
+}
+.proj-tipo {
+  color: var(--muted);
+}
+
+.proj h3 {
+  font-family: var(--mono);
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+.proj.principal h3 {
+  font-size: clamp(24px, 3vw, 32px);
+}
+
+.proj-desc {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.proj-lista {
+  list-style: none;
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+.proj-lista li {
+  padding-left: 18px;
+  position: relative;
+}
+.proj-lista li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.proj-lista .tec {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--dim);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+}
+
+.proj-links {
+  display: flex;
+  gap: 22px;
+  margin-top: auto;
+  padding-top: 4px;
+  font-family: var(--mono);
+  font-size: 14px;
+}
+.proj-links a {
+  color: var(--accent);
+  border-bottom: 1px dashed transparent;
+}
+.proj-links a + a {
+  color: var(--muted);
+}
+.proj-links a:hover {
+  border-bottom-color: currentColor;
+  color: var(--accent);
+}
+
+@media (max-width: 1040px) {
+  .proj-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .proj.principal {
+    grid-template-columns: 1fr;
+  }
+  .proj.principal .shot {
+    margin: 14px 14px 0;
+  }
+  .proj.principal .shot-view {
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+  .proj.principal .proj-info {
+    padding: 20px 22px 24px;
+  }
+}
+
+@media (max-width: 680px) {
+  .proj-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

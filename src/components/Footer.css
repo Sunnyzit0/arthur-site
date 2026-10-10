@@ -1,0 +1,39 @@
+.rodape {
+  margin-top: 96px;
+  border-top: 1px solid var(--line);
+  padding: 32px 0 56px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.rodape-in {
+  display: grid;
+  gap: 8px;
+  text-align: center;
+}
+.rodape-exit {
+  color: var(--text);
+}
+.rodape a,
+.rodape button {
+  color: var(--accent);
+  font-family: inherit;
+  font-size: inherit;
+}
+.rodape a:hover,
+.rodape button:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.rodape-dica {
+  color: var(--dim);
+}
+.rodape-dica code {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .rodape {
+    padding-bottom: 32px;
+  }
+}

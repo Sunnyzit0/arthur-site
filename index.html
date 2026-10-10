@@ -1,27 +1,65 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="ato">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!-- Antes de pintar: aplica o tema salvo e decide se mostra o boot -->
+    <script>
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        try {
+          var t = localStorage.getItem('ato:theme');
+          if (t) d.dataset.theme = t;
+        } catch (e) {}
+        try {
+          var calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (!calmo && !navigator.webdriver && !sessionStorage.getItem('ato:booted')) d.classList.add('booting');
+        } catch (e) {}
+      })();
+    </script>
+    <title>Arthur da Costa Silva · Desenvolvedor Web em Padre Bernardo, GO</title>
+    <meta name="description" content="Arthur da Costa Silva cria sites e sistemas web para negócios locais, do layout ao deploy: sites institucionais, portfólios e sistemas de reserva. Padre Bernardo, GO, e todo o Brasil." />
+    <meta name="author" content="Arthur da Costa Silva" />
     <meta name="theme-color" content="#0b0d10" />
-    <title>Arthur da Costa Silva · Dev Web</title>
-    <meta name="description" content="Portfólio de Arthur da Costa Silva — desenvolvedor web. Sites, portfólios e sistemas sob medida." />
+    <link rel="canonical" href="__SITE_URL__/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Prévia ao compartilhar o link (WhatsApp, Instagram, LinkedIn) -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Arthur da Costa Silva" />
+    <meta property="og:url" content="__SITE_URL__/" />
     <meta property="og:title" content="Arthur da Costa Silva · Dev Web" />
-    <meta property="og:description" content="Sites, portfólios e sistemas sob medida para pequenos negócios. Do layout ao deploy." />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="Do cabo de fibra ao deploy: sites e sistemas web para negócios locais." />
+    <meta property="og:image" content="__SITE_URL__/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Arthur da Costa Silva, desenvolvedor web, em um terminal" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;500&display=swap" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Arthur da Costa Silva",
+        "jobTitle": "Desenvolvedor Web",
+        "url": "__SITE_URL__/",
+        "image": "__SITE_URL__/og.png",
+        "email": "mailto:arthurgapb@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Padre Bernardo", "addressRegion": "GO", "addressCountry": "BR" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidade Católica de Brasília" },
+        "knowsAbout": ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Desenvolvimento web", "Redes de fibra óptica"],
+        "sameAs": ["https://github.com/Sunnyzit0", "https://www.linkedin.com/in/arthuzinho/", "https://instagram.com/ato.js"]
+      }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app--></div>
+    <noscript>
+      <style>.js .typed-text { visibility: visible !important; }</style>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

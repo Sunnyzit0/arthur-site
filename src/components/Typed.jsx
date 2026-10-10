@@ -1,22 +1,38 @@
 import { useEffect, useState } from 'react';
+import { aposBoot, semMovimento } from '../lib/hooks';
 
-const semAnimacao =
-  typeof window !== 'undefined' &&
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Efeito de digitação estilo terminal. O HTML pré-renderizado já traz o texto
+// completo (bom para o Google); no navegador ele some e é "digitado" depois do
+// boot. O texto real fica no aria-label do elemento pai.
+export default function Typed({ text, velocidade = 55 }) {
+  const [n, setN] = useState(text.length);
+  const [fase, setFase] = useState('ssr');
 
-// Efeito de digitação estilo terminal. O texto completo fica no aria-label
-// do elemento pai, então a animação é escondida de leitores de tela.
-export default function Typed({ text }) {
-  const [n, setN] = useState(semAnimacao ? text.length : 0);
+  useEffect(
+    () =>
+      aposBoot(() => {
+        if (semMovimento()) {
+          setFase('pronto');
+          return;
+        }
+        setN(0);
+        setFase('digitando');
+      }),
+    [],
+  );
+
   useEffect(() => {
-    if (n >= text.length) return;
-    const t = setTimeout(() => setN(n + 1), 45);
+    if (fase !== 'digitando' || n >= text.length) return;
+    const t = setTimeout(() => setN(n + 1), velocidade + Math.random() * 45);
     return () => clearTimeout(t);
-  }, [n, text]);
+  }, [n, fase, text, velocidade]);
+
+  const estado = fase === 'digitando' && n >= text.length ? 'pronto' : fase;
+
   return (
-    <span aria-hidden="true">
-      {text.slice(0, n)}
-      <span className="cursor">▋</span>
+    <span className="typed" data-fase={estado} aria-hidden="true">
+      <span className="typed-text">{text.slice(0, n)}</span>
+      <span className="cursor" />
     </span>
   );
 }

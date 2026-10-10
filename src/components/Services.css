@@ -1,0 +1,170 @@
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.svc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.svc:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+.reveal-on .svc.reveal.in:hover {
+  transform: translateY(-4px);
+}
+
+.svc-pkg {
+  font-family: var(--mono);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.svc h3 {
+  font-family: var(--mono);
+  font-size: 18px;
+  line-height: 1.25;
+}
+.svc-texto {
+  color: var(--muted);
+  font-size: 14.5px;
+}
+.svc-inclui {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+.svc-inclui li {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--bg-3);
+  color: var(--text);
+}
+.svc-inclui li::before {
+  content: '+ ';
+  color: var(--accent);
+}
+.svc-cta {
+  margin-top: auto;
+  padding-top: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+.svc-cta:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Processo como um git log horizontal */
+.proc {
+  margin-top: 72px;
+}
+.proc-titulo {
+  font-family: var(--mono);
+  font-size: 22px;
+  margin-bottom: 26px;
+}
+.proc-lista {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  position: relative;
+}
+.proc-lista::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 6px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity: 0.6;
+}
+.proc-item {
+  position: relative;
+  padding-top: 28px;
+}
+.proc-no {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--accent);
+}
+.proc-item:last-child .proc-no {
+  background: var(--accent);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+.proc-hash {
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.proc-head {
+  color: var(--accent-2);
+  font-weight: 700;
+}
+.proc-nome {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 16px;
+  margin: 2px 0 6px;
+}
+.proc-texto {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@media (max-width: 1040px) {
+  .svc-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .proc-lista {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-left: 30px;
+  }
+  .proc-lista::before {
+    left: 6px;
+    right: auto;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  }
+  .proc-item {
+    padding-top: 0;
+  }
+  .proc-no {
+    left: -30px;
+    top: 3px;
+  }
+}
+
+@media (max-width: 560px) {
+  .svc-grid {
+    grid-template-columns: 1fr;
+  }
+}

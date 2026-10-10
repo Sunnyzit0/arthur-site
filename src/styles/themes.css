@@ -1,0 +1,132 @@
+/* Paletas. Cada tema redefine os mesmos tokens; o resto do CSS só usa var(). */
+:root,
+[data-theme='ato'] {
+  --bg: #0b0d10;
+  --bg-2: #12161b;
+  --bg-3: #181d24;
+  --line: #222932;
+  --line-2: #2f3843;
+  --text: #d6dde6;
+  --muted: #8b97a5;
+  --dim: #56616e;
+  --accent: #4ade80;
+  --accent-2: #38bdf8;
+  --yellow: #facc15;
+  --purple: #c084fc;
+  --red: #f87171;
+  --on-accent: #06210f;
+  --glow: none;
+  color-scheme: dark;
+}
+
+[data-theme='dracula'] {
+  --bg: #282a36;
+  --bg-2: #21222c;
+  --bg-3: #2f3141;
+  --line: #3b3e51;
+  --line-2: #4f5370;
+  --text: #f8f8f2;
+  --muted: #a7aed3;
+  --dim: #6272a4;
+  --accent: #50fa7b;
+  --accent-2: #8be9fd;
+  --yellow: #f1fa8c;
+  --purple: #bd93f9;
+  --red: #ff5555;
+  --on-accent: #0f2a17;
+  color-scheme: dark;
+}
+
+[data-theme='gruvbox'] {
+  --bg: #1d2021;
+  --bg-2: #282828;
+  --bg-3: #32302f;
+  --line: #3c3836;
+  --line-2: #504945;
+  --text: #ebdbb2;
+  --muted: #bdae93;
+  --dim: #7c6f64;
+  --accent: #b8bb26;
+  --accent-2: #83a598;
+  --yellow: #fabd2f;
+  --purple: #d3869b;
+  --red: #fb4934;
+  --on-accent: #1d2021;
+  color-scheme: dark;
+}
+
+[data-theme='catppuccin'] {
+  --bg: #1e1e2e;
+  --bg-2: #181825;
+  --bg-3: #24243a;
+  --line: #313244;
+  --line-2: #45475a;
+  --text: #cdd6f4;
+  --muted: #a6adc8;
+  --dim: #6c7086;
+  --accent: #a6e3a1;
+  --accent-2: #89dceb;
+  --yellow: #f9e2af;
+  --purple: #cba6f7;
+  --red: #f38ba8;
+  --on-accent: #11111b;
+  color-scheme: dark;
+}
+
+/* Fósforo âmbar: um tom só, brilho e linhas de varredura */
+[data-theme='amber'] {
+  --bg: #0c0800;
+  --bg-2: #140e02;
+  --bg-3: #1c1404;
+  --line: #3a2a08;
+  --line-2: #54400f;
+  --text: #ffb641;
+  --muted: #c88a1e;
+  --dim: #7a5410;
+  --accent: #ffd166;
+  --accent-2: #ffa600;
+  --yellow: #ffe08a;
+  --purple: #ffbd59;
+  --red: #ff7b39;
+  --on-accent: #1a1000;
+  --glow: 0 0 6px rgb(255 170 0 / 0.45);
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #f6f1e7;
+  --bg-2: #fffdf8;
+  --bg-3: #ede6d8;
+  --line: #ddd4c2;
+  --line-2: #c9bea8;
+  --text: #1f2a2e;
+  --muted: #505d62;
+  --dim: #9a9282;
+  --accent: #1f7a3a;
+  --accent-2: #0f5f96;
+  --yellow: #8a6100;
+  --purple: #7b3fa6;
+  --red: #b42318;
+  --on-accent: #ffffff;
+  color-scheme: light;
+}
+
+[data-theme='amber'] body {
+  text-shadow: var(--glow);
+}
+
+[data-theme='amber'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgb(0 0 0 / 0.18) 0 1px, transparent 1px 3px);
+  box-shadow: inset 0 0 160px rgb(0 0 0 / 0.75);
+}
+
+/* As bolinhas da janela e os blocos do neofetch mantêm as cores de terminal */
+[data-theme='amber'] .dots i,
+[data-theme='amber'] .swatch {
+  filter: sepia(1) saturate(3) hue-rotate(-12deg);
+}

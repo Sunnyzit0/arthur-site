@@ -1,0 +1,85 @@
+.neo {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: start;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.neo-logo {
+  width: 150px;
+  height: auto;
+  margin-top: 6px;
+}
+
+.neo-titulo {
+  font-size: 14px;
+}
+.neo-sep {
+  color: var(--dim);
+  line-height: 1;
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+
+.neo-linha {
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+}
+.neo-linha dt {
+  color: var(--accent-2);
+  font-weight: 700;
+  flex: none;
+}
+.neo-linha dt::after {
+  content: ':';
+  color: var(--muted);
+}
+.neo-linha dd {
+  color: var(--text);
+  min-width: 0;
+}
+
+.neo-cores {
+  display: flex;
+  margin-top: 12px;
+}
+.swatch {
+  width: 22px;
+  height: 14px;
+}
+
+.neo.compacto {
+  font-size: 12px;
+  gap: 20px;
+}
+.neo.compacto .neo-logo {
+  width: 130px;
+}
+
+@media (max-width: 1080px) and (min-width: 981px) {
+  .neo {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .neo-logo {
+    width: 170px;
+  }
+}
+
+@media (max-width: 560px) {
+  .neo {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    font-size: 12px;
+  }
+  .neo-logo {
+    width: 160px;
+  }
+  .neo.compacto .neo-logo {
+    width: 120px;
+  }
+}

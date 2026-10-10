@@ -1,29 +1,88 @@
 import { projetos } from '../data';
+import { Icone } from './icones';
+import { SectionHead } from './ui';
+import './Projects.css';
+
+function Projeto({ p, i }) {
+  const principal = i === 0;
+  return (
+    <article
+      className={`proj reveal ${principal ? 'principal' : ''}`}
+      style={{ '--d': principal ? '0s' : `${(i - 1) * 90}ms` }}
+      aria-labelledby={`proj-${p.slug}`}
+    >
+      <a className="shot" href={p.url} target="_blank" rel="noreferrer" tabIndex={-1} aria-hidden="true">
+        <span className="shot-bar">
+          <span className="dots">
+            <i />
+            <i />
+            <i />
+          </span>
+          <span className="shot-url">
+            {Icone.cadeado}
+            {p.dominio}
+          </span>
+        </span>
+        <span className="shot-view">
+          <img src={p.imagem} alt="" loading="lazy" decoding="async" width="960" height="600" />
+          {principal && <span className="shot-hint">passe o mouse para rolar ↓</span>}
+        </span>
+      </a>
+
+      <div className="proj-info">
+        <p className="proj-meta">
+          <span className={`badge ${p.tom}`}>{p.status}</span>
+          <span className="proj-tipo">{p.tipo}</span>
+        </p>
+        <h3 id={`proj-${p.slug}`}>{p.nome}</h3>
+        <p className="proj-desc">{p.descricao}</p>
+        <ul className="proj-lista">
+          {p.destaques.map(([txt, tec]) => (
+            <li key={txt}>
+              {txt}
+              {tec && <span className="tec"> // {tec}</span>}
+            </li>
+          ))}
+        </ul>
+        <ul className="tags" aria-label="Tecnologias">
+          {p.stack.map((s) => (
+            <li key={s} className="tag">
+              {s}
+            </li>
+          ))}
+        </ul>
+        <p className="proj-links">
+          <a href={p.url} target="_blank" rel="noreferrer">
+            abrir site <span aria-hidden="true">↗</span>
+            <span className="sr-only"> {p.nome} (abre em nova aba)</span>
+          </a>
+          <a href={p.repo} target="_blank" rel="noreferrer">
+            código <span aria-hidden="true">↗</span>
+            <span className="sr-only"> de {p.nome} no GitHub</span>
+          </a>
+        </p>
+      </div>
+    </article>
+  );
+}
 
 export default function Projects() {
   return (
-    <section id="projetos">
-      <h2><span className="num">01.</span> projetos</h2>
-      <div className="grid">
-        {projetos.map((p) => (
-          <article className="card" key={p.nome}>
-            <div className="card-top">
-              <span className="dots"><i /><i /><i /></span>
-              <span className="muted">{p.tipo}</span>
-            </div>
-            <h3>{p.nome}</h3>
-            <p>{p.descricao}</p>
-            <ul className="list">
-              {p.destaques.map((d) => <li key={d}>{d}</li>)}
-            </ul>
-            <div className="tags">
-              {p.stack.map((s) => <span key={s}>{s}</span>)}
-            </div>
-            <a className="link" href={p.link} target="_blank" rel="noreferrer">
-              abrir site ↗
-            </a>
-          </article>
-        ))}
+    <section id="projetos" aria-labelledby="t-projetos">
+      <div className="wrap">
+        <SectionHead
+          id="t-projetos"
+          num="01."
+          path="~/projetos"
+          cmd="ls -la --sort=impacto"
+          title="projetos"
+          lead="Sites de verdade, para negócios de verdade aqui da região. Passe o mouse no print para ver a página inteira."
+        />
+        <div className="proj-grid">
+          {projetos.map((p, i) => (
+            <Projeto key={p.slug} p={p} i={i} />
+          ))}
+        </div>
       </div>
     </section>
   );

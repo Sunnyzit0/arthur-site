@@ -1,0 +1,64 @@
+.boot {
+  display: none;
+}
+
+.booting .boot {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  padding: clamp(20px, 5vw, 48px);
+  background: var(--bg);
+  font-family: var(--mono);
+  font-size: clamp(12px, 1.6vw, 15px);
+  line-height: 1.75;
+  color: var(--muted);
+  /* Se o JS não carregar, a tela some sozinha */
+  animation: boot-saida 0.38s ease 3.2s forwards;
+}
+
+.boot-out .boot {
+  animation: boot-saida 0.38s ease forwards;
+}
+
+.boot-lines p {
+  opacity: 0;
+  white-space: pre-wrap;
+  animation: boot-linha 0.01s linear forwards;
+  animation-delay: calc(var(--i) * 140ms);
+}
+
+.boot-lines p:first-child {
+  color: var(--text);
+}
+
+.boot-lines p:last-child {
+  color: var(--text);
+}
+
+.boot-ok {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.boot-skip {
+  align-self: flex-end;
+  font-size: 12px;
+  color: var(--dim);
+  animation: blink 1.2s step-end infinite;
+}
+
+@keyframes boot-linha {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes boot-saida {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
