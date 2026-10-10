@@ -19,7 +19,7 @@ export default function Neofetch({ compacto = false }) {
     ['Host', 'dev web freelancer'],
     ['Kernel', 'React 19 · TypeScript'],
     ['Uptime', uptime(agora)],
-    ['Packages', `${projetos.length} sites entregues`],
+    ['Packages', `${projetos.length} projetos (${projetos.filter((p) => p.tom === 'live').length} em produção)`],
     ['Shell', 'zsh + Claude Code'],
     ['Stack', 'Vite · Tailwind · Supabase'],
     ['Rede', 'fibra óptica (é sério)'],

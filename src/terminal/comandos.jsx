@@ -16,6 +16,12 @@ const Link = ({ href, children }) => (
 
 export const USUARIO = 'visitante';
 
+const TOM = {
+  live: { icone: '●', cor: 'accent' },
+  proto: { icone: '◐', cor: 'yellow' },
+  off: { icone: '○', cor: 'red' },
+};
+
 export const SECOES = {
   '~': 'inicio',
   inicio: 'inicio',
@@ -91,7 +97,7 @@ function projeto(p) {
     </>,
     <>
       {'  '}
-      <Link href={p.url}>{p.dominio} ↗</Link>
+      {p.tom === 'off' ? <C c="red">{p.dominio} (fora do ar)</C> : <Link href={p.url}>{p.dominio} ↗</Link>}
       {'   '}
       <Link href={p.repo}>código ↗</Link>
     </>,
@@ -223,10 +229,9 @@ const comandos = {
     run: () => [
       ...projetos.map((p) => (
         <>
-          <C c={p.tom === 'live' ? 'accent' : 'yellow'}>{p.tom === 'live' ? '●' : '◐'}</C>{' '}
-          <strong>{p.slug.padEnd(12)}</strong>
+          <C c={TOM[p.tom].cor}>{TOM[p.tom].icone}</C> <strong>{p.slug.padEnd(12)}</strong>
           <C c="muted">{p.tipo.padEnd(30)}</C>
-          <Link href={p.url}>{p.dominio}</Link>
+          {p.tom === 'off' ? <C c="red">fora do ar</C> : <Link href={p.url}>{p.dominio}</Link>}
         </>
       )),
       '',
@@ -293,6 +298,14 @@ const comandos = {
       const url = (alvo && p?.url) || REDES[alvo];
       if (!alvo) return [<C c="red">uso: abrir &lt;projeto | github | linkedin | instagram | whatsapp | email&gt;</C>];
       if (!url) return [<C c="red">abrir: não sei abrir "{alvo}". tente `projetos` para ver os nomes.</C>];
+      if (p?.tom === 'off' && !REDES[alvo]) {
+        return [
+          <C c="red">abrir: {p.dominio} está fora do ar no momento.</C>,
+          <>
+            <C c="muted">o código continua no GitHub:</C> <Link href={p.repo}>{p.repo.replace('https://', '')} ↗</Link>
+          </>,
+        ];
+      }
       ctx.abrir(url);
       return [<C c="muted">abrindo {url.replace(/^https?:\/\//, '').split('?')[0]}…</C>];
     },
@@ -440,7 +453,7 @@ const comandos = {
         ctx.irPara('atividade');
         return [];
       }
-      if (args[0] === 'push') return [<C c="accent">Everything up-to-date ✔ ({projetos.length} sites no ar)</C>];
+      if (args[0] === 'push') return [<C c="accent">Everything up-to-date ✔ ({projetos.length} projetos no repositório)</C>];
       return [
         'On branch main',
         "Your branch is up to date with 'origin/main'.",

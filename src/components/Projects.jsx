@@ -5,13 +5,17 @@ import './Projects.css';
 
 function Projeto({ p, i }) {
   const principal = i === 0;
+  const noAr = p.tom !== 'off';
+  // Fora do ar: o print continua (vem do build local), mas sem link para o site
+  const Moldura = noAr ? 'a' : 'div';
+  const link = noAr ? { href: p.url, target: '_blank', rel: 'noreferrer', tabIndex: -1 } : {};
   return (
     <article
-      className={`proj reveal ${principal ? 'principal' : ''}`}
+      className={`proj reveal ${principal ? 'principal' : ''} ${noAr ? '' : 'off'}`}
       style={{ '--d': principal ? '0s' : `${(i - 1) * 90}ms` }}
       aria-labelledby={`proj-${p.slug}`}
     >
-      <a className="shot" href={p.url} target="_blank" rel="noreferrer" tabIndex={-1} aria-hidden="true">
+      <Moldura className="shot" aria-hidden="true" {...link}>
         <span className="shot-bar">
           <span className="dots">
             <i />
@@ -25,9 +29,10 @@ function Projeto({ p, i }) {
         </span>
         <span className="shot-view">
           <img src={p.imagem} alt="" loading="lazy" decoding="async" width="960" height="600" />
-          {principal && <span className="shot-hint">passe o mouse para rolar ↓</span>}
+          {principal && noAr && <span className="shot-hint">passe o mouse para rolar ↓</span>}
+          {!noAr && <span className="shot-off">site fora do ar no momento</span>}
         </span>
-      </a>
+      </Moldura>
 
       <div className="proj-info">
         <p className="proj-meta">
@@ -52,10 +57,14 @@ function Projeto({ p, i }) {
           ))}
         </ul>
         <p className="proj-links">
-          <a href={p.url} target="_blank" rel="noreferrer">
-            abrir site <span aria-hidden="true">↗</span>
-            <span className="sr-only"> {p.nome} (abre em nova aba)</span>
-          </a>
+          {noAr ? (
+            <a href={p.url} target="_blank" rel="noreferrer">
+              abrir site <span aria-hidden="true">↗</span>
+              <span className="sr-only"> {p.nome} (abre em nova aba)</span>
+            </a>
+          ) : (
+            <span className="proj-off">site fora do ar</span>
+          )}
           <a href={p.repo} target="_blank" rel="noreferrer">
             código <span aria-hidden="true">↗</span>
             <span className="sr-only"> de {p.nome} no GitHub</span>

@@ -11,7 +11,7 @@ export const perfil = {
   status: 'aberto a freelas e estágio',
   headline: 'Crio sites e sistemas web para negócios locais, do layout ao deploy.',
   resumo:
-    'Sites rápidos, seguros e que o dono consegue atualizar sozinho. Quatro projetos no ar: um sistema de reservas, uma loja, um site de clínica e um portfólio.',
+    'Sites rápidos, seguros e que o dono consegue atualizar sozinho. Quatro projetos para negócios da região: um sistema de reservas em produção, uma loja, um site de clínica e um portfólio.',
   // Só dígitos: DDI 55 + DDD + número
   whatsapp: '5561999170651',
   telefone: '(61) 9 9917-0651',
@@ -30,6 +30,7 @@ export const sobre = [
   'Hoje junto as duas coisas: entendo de rede, de servidor e de gente. Por isso entrego site que abre rápido, aparece no Google e que o dono consegue atualizar sem depender de mim.',
 ];
 
+// tom: 'live' = no ar · 'proto' = protótipo · 'off' = fora do ar (o card esconde o link do site)
 export const projetos = [
   {
     slug: 'recanto',
@@ -56,8 +57,8 @@ export const projetos = [
     slug: 'vk-store',
     nome: 'VK Store',
     tipo: 'Loja e assistência técnica',
-    status: 'no ar',
-    tom: 'live',
+    status: 'fora do ar',
+    tom: 'off',
     url: 'https://vk-store-two.vercel.app',
     dominio: 'vk-store-two.vercel.app',
     repo: 'https://github.com/Sunnyzit0/vk-store',
@@ -75,8 +76,8 @@ export const projetos = [
     slug: 'jaquefisio',
     nome: 'Jaqueline Lima',
     tipo: 'Fisioterapia e quiropraxia',
-    status: 'no ar',
-    tom: 'live',
+    status: 'protótipo',
+    tom: 'proto',
     url: 'https://jaquefisio.vercel.app',
     dominio: 'jaquefisio.vercel.app',
     repo: 'https://github.com/Sunnyzit0/jaquefisio',
@@ -96,8 +97,8 @@ export const projetos = [
     tipo: 'Portfólio de videomaker',
     status: 'protótipo',
     tom: 'proto',
-    url: 'https://jhennyfer-videomaker.vercel.app',
-    dominio: 'jhennyfer-videomaker.vercel.app',
+    url: 'https://jhennyfervideomaker.vercel.app',
+    dominio: 'jhennyfervideomaker.vercel.app',
     repo: 'https://github.com/Sunnyzit0/jhennyfer-videomaker',
     imagem: '/projetos/jhennyfer.webp',
     descricao:
@@ -160,7 +161,7 @@ export const trajetoria = [
     titulo: 'Desenvolvedor Web freelancer',
     onde: 'Autônomo · Padre Bernardo, GO',
     tipo: 'freela',
-    texto: '4 sites entregues para negócios locais: sistema de reservas, loja, clínica e portfólio.',
+    texto: '4 projetos para negócios locais: sistema de reservas em produção, loja, clínica e portfólio.',
   },
   {
     quando: '2026 — hoje',

@@ -174,8 +174,42 @@
   border-color: color-mix(in srgb, var(--yellow) 40%, transparent);
   background: color-mix(in srgb, var(--yellow) 8%, transparent);
 }
+.badge.off {
+  color: var(--red);
+  border-color: color-mix(in srgb, var(--red) 40%, transparent);
+  background: color-mix(in srgb, var(--red) 8%, transparent);
+}
 .proj-tipo {
   color: var(--muted);
+}
+
+/* Projeto fora do ar: print apagado e sem link para o site */
+.proj.off .shot-view img {
+  filter: grayscale(0.85) brightness(0.7);
+}
+.proj.off .shot-url {
+  color: var(--dim);
+  text-decoration: line-through;
+}
+.proj.off .shot-url svg {
+  color: var(--red);
+}
+.shot-off {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--red) 50%, var(--line-2));
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.proj-off {
+  color: var(--dim);
 }
 
 .proj h3 {
