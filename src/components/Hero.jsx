@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="hero">
       <p className="prompt">arthur@dev:~$ whoami</p>
-      <h1>
+      <h1 aria-label={perfil.nome}>
         <Typed text={perfil.nome} />
       </h1>
       <p className="role">

@@ -7,18 +7,22 @@ export default function About() {
       <div className="about">
         <div>
           <p className="prompt">$ cat stack.json</p>
+          {/* Cada linha quebra entre os itens, com recuo, em vez de rolar para o lado */}
           <pre className="code">
-            {'{\n'}
+            <span className="line">{'{'}</span>
             {Object.entries(skills).map(([k, v], i, arr) => (
-              <span key={k}>
-                {'  '}<span className="key">"{k}"</span>: [
+              <span className="line entry" key={k}>
+                <span className="key">"{k}"</span>: [
                 {v.map((x, j) => (
-                  <span key={x}><span className="str">"{x}"</span>{j < v.length - 1 ? ', ' : ''}</span>
+                  <span key={x}>
+                    <span className="item"><span className="str">"{x}"</span>{j < v.length - 1 ? ',' : ''}</span>
+                    {j < v.length - 1 ? ' ' : ''}
+                  </span>
                 ))}
-                ]{i < arr.length - 1 ? ',' : ''}{'\n'}
+                ]{i < arr.length - 1 ? ',' : ''}
               </span>
             ))}
-            {'}'}
+            <span className="line">{'}'}</span>
           </pre>
         </div>
         <div>
