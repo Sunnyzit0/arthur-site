@@ -1,9 +1,6 @@
-import { perfil } from '../data';
 import { abrirTerminal } from '../lib/terminal';
 import './Footer.css';
 
-/* global __ANO__ */
-// __ANO__ vem do vite.config (ano do build), igual no HTML pré-renderizado e no navegador.
 export default function Footer() {
   return (
     <footer className="rodape">
@@ -13,7 +10,7 @@ export default function Footer() {
           <span className="t-dim">]</span>
         </p>
         <p>
-          © {__ANO__} {perfil.nome} · feito à mão com React + Vite ·{' '}
+          feito à mão com React + Vite ·{' '}
           <a href="https://github.com/Sunnyzit0/arthur-site" target="_blank" rel="noreferrer">
             código-fonte ↗
           </a>
