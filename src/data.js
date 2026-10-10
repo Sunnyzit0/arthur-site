@@ -36,7 +36,7 @@ export const projetos = [
     slug: 'recanto',
     nome: 'Recanto da Piscina',
     tipo: 'Sistema de reservas',
-    status: 'em produção',
+    status: 'entregue e vendido',
     tom: 'live',
     url: 'https://www.recantodapiscina.com.br',
     dominio: 'recantodapiscina.com.br',
